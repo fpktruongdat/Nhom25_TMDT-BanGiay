@@ -1,0 +1,85 @@
+﻿@model ChargeViewModel
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Charge";
+    var cart = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<Cart>("Cart");
+}
+
+<div class="checkout-page-area mb-130">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="lezada-form">
+                    <!-- Checkout Form s-->
+                    <form asp-action="Charge" asp-controller="Checkout" method="post" class="checkout-form">
+                        <div class="row row-40">
+
+                            <div class="col-lg-7 mb-20">
+
+                                <!-- Billing Address -->
+                                <div id="billing-form" class="mb-40">
+
+                                    <div class="row">
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>Card no*</label>
+                                            <input asp-for="Number" type="text" placeholder="Card Number">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>Exp Year*</label>
+                                            <input asp-for="ExpYear" type="text" placeholder="Exp Year">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>Exp Month*</label>
+                                            <input asp-for="ExpMonth" type="text" placeholder="ExpMonth">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>CVC*</label>
+                                            <input asp-for="Cvc" type="text" placeholder="CVC">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <button type="submit" class="lezada-button lezada-button--medium mt-30">Charge</button>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="row">
+
+                                    <!-- Cart Total -->
+                                    <div class="col-12 mb-60">
+
+                                        <h4 class="checkout-title">Cart Total</h4>
+
+                                        <div class="checkout-cart-total">
+
+                                            <h4>Product <span>Total</span></h4>
+
+                                            <ul>
+                                                @foreach (var cartline in cart.Lines)
+                                                {
+                                                    <li>@cartline.Shoes.Name X @cartline.Quantity <span>$@(cartline.Shoes.Price * cartline.Quantity)</span></li>
+                                                }
+                                            </ul>
+
+                                            <p>Sub Total <span>@cart.ComputeTotalValue().ToString("c")</span></p>
+                                            <p>Shipping Fee <span>$00.00</span></p>
+
+                                            <h4>Grand Total <span>@cart.ComputeTotalValue().ToString("c")</span></h4>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

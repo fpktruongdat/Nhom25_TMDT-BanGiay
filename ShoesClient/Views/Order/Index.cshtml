@@ -1,0 +1,72 @@
+﻿@model IEnumerable<OrderViewModel>
+@{
+    ViewData["Title"] = "Order";
+}
+
+<div class="shopping-cart-area mb-130">
+    <div class="container">
+        @foreach (var order in Model)
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--=======  cart table  =======-->
+                    <h1>Order-@order.OrderId</h1>
+                    <div class="cart-table-container">
+                        <table class="cart-table">
+                            <thead>
+                                <tr>
+                                    <th class="product-name" colspan="2">Product</th>
+                                    <th class="product-price">Price</th>
+                                    <th class="product-quantity">Quantity</th>
+                                    <th class="product-quantity">Size</th>
+                                    <th class="product-subtotal">&nbsp;</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var cartline in order.MyCart)
+                                {
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <a href="shop-product-basic.html">
+                                                <img src="@cartline.Shoes.ImageThumbnailUrl" class="img-fluid" alt="">
+                                            </a>
+                                        </td>
+                                        <td class="product-name">
+                                            <a asp-controller="Shoes" asp-action="Details" asp-route-id="@cartline.Shoes.ShoesId">@cartline.Shoes.Name</a>
+                                        </td>
+
+                                        <td class="product-price"><span class="price">$@cartline.Shoes.Price</span></td>
+
+                                        <td class="product-quantity">
+
+                                            @cartline.Quantity
+
+                                        </td>
+                                        <td class="product-quantity">
+
+                                            @cartline.Size
+
+                                        </td>
+
+                                        <td class="total-price"><span class="price">$@(cartline.Shoes.Price * cartline.Quantity)</span></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-12 text-right text-lg-right">
+                        <!--=======  update cart button  =======-->
+
+                        <h2>Total: @order.MyCart.Sum(e => e.Shoes.Price * e.Quantity)</h2>
+                        <!--=======  End of update cart button  =======-->
+                    </div>
+                    <!--=======  End of cart table  =======-->
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>

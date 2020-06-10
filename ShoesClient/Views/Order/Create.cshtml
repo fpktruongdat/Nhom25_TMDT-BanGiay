@@ -1,0 +1,108 @@
+﻿@model OrderViewModel
+@{
+    ViewData["Title"] = "Order";
+}
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Home Page";
+    var user = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<UserLoginModel>("UserInfo");
+    var cart = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<Cart>("Cart");
+
+
+
+}
+<div class="checkout-page-area mb-130">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="lezada-form">
+                    <!-- Checkout Form s-->
+                    <form asp-action="Create" asp-controller="Order" method="post" class="checkout-form">
+                        <div class="row row-40">
+
+                            <div class="col-lg-7 mb-20">
+
+                                <!-- Billing Address -->
+                                <div id="billing-form" class="mb-40">
+                                    <h4 class="checkout-title">Billing of - @user.name</h4>
+
+                                    <div class="row">
+                                        <input type="hidden" asp-for="UserId" value="@user.sub" />
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>Phone no*</label>
+                                            <input asp-for="Phone" type="text" placeholder="Phone number">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>Address*</label>
+                                            <input asp-for="Address" type="text" placeholder="Address">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>Country*</label>
+                                            <input asp-for="Country" type="text" placeholder="Country">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>Town/City*</label>
+                                            <input asp-for="City" type="text" placeholder="Town/City">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>State*</label>
+                                            <input asp-for="State" type="text" placeholder="State">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>Zip Code*</label>
+                                            <input asp-for="Zip" type="text" placeholder="Zip Code">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-5">
+                                <div class="row">
+
+                                    <!-- Cart Total -->
+                                    <div class="col-12 mb-60">
+
+                                        <h4 class="checkout-title">Cart Total</h4>
+
+                                        <div class="checkout-cart-total">
+
+                                            <h4>Product <span>Total</span></h4>
+
+                                            <ul>
+                                                @foreach (var cartline in cart.Lines)
+                                                {
+                                                    <li>@cartline.Shoes.Name X @cartline.Quantity <span>$@(cartline.Shoes.Price * cartline.Quantity)</span></li>
+                                                }
+                                            </ul>
+
+                                            <p>Sub Total <span>@cart.ComputeTotalValue().ToString("c")</span></p>
+                                            <p>Shipping Fee <span>$00.00</span></p>
+
+                                            <h4>Grand Total <span>@cart.ComputeTotalValue().ToString("c")</span></h4>
+
+                                        </div>
+
+                                        <button type="submit" class="lezada-button lezada-button--medium mt-30">Order</button>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,189 @@
+﻿@model DetailViewModel
+@{
+    ViewData["Title"] = "Detail";
+}
+    <div class="shop-page-wrapper mt-100 mb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--=======  shop product content  =======-->
+
+                    <div class="shop-product">
+                        <div class="row pb-100">
+                            <div class="col-lg-6 mb-md-70 mb-sm-70">
+                                <!--=======  shop product big image gallery  =======-->
+
+                                <div class="shop-product__big-image-gallery-wrapper mb-30">
+
+                                    <!--=======  shop product gallery icons  =======-->
+
+                                    <div class="single-product__floating-badges single-product__floating-badges--shop-product">
+                                        @if (Model.shoes.IsOnNew)
+                                        {
+                                            <span class="hot">hot</span>
+                                        }
+                                        @if (Model.shoes.IsOnSale)
+                                        {
+                                            <span class="onsale">-10%</span>
+                                        }
+                                    </div>
+
+
+                                    <div class="shop-product-rightside-icons">
+                                        <span class="wishlist-icon">
+                                            <a href="#" data-tippy="Add to wishlist" data-tippy-placement="left" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"><i class="ion-android-favorite-outline"></i></a>
+                                        </span>
+                                        <span class="enlarge-icon">
+                                            <a class="btn-zoom-popup" href="#" data-tippy="Click to enlarge" data-tippy-placement="left" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"><i class="ion-android-expand"></i></a>
+                                        </span>
+                                    </div>
+
+                                    <!--=======  End of shop product gallery icons  =======-->
+
+                                    <div class="shop-product__big-image-gallery-slider">
+
+                                        <!--=======  single image  =======-->
+
+                                        <div class="single-image">
+                                            <img src="@Model.shoes.ImageThumbnailUrl" class="img-fluid" alt="">
+                                        </div>
+
+                                        <!--=======  End of single image  =======-->
+                                        <!--=======  single image  =======-->
+
+                                        <div class="single-image">
+                                            <img src="@Model.shoes.ImageUrl" class="img-fluid" alt="">
+                                        </div>
+
+                                        <!--=======  End of single image  =======-->
+
+                                    </div>
+
+                                </div>
+
+                                <!--=======  End of shop product big image gallery  =======-->
+                                <!--=======  shop product small image gallery  =======-->
+
+                                <div class="shop-product__small-image-gallery-wrapper">
+
+                                    <div class="shop-product__small-image-gallery-slider">
+                                        <!--=======  single image  =======-->
+
+                                        <div class="single-image scale-img-thumb">
+                                            <img src="@Model.shoes.ImageThumbnailUrl" class="img-fluid" alt="">
+                                        </div>
+
+                                        <!--=======  End of single image  =======-->
+                                        <!--=======  single image  =======-->
+
+                                        <div class="single-image scale-img-thumb">
+                                            <img src="@Model.shoes.ImageUrl" class="img-fluid" alt="">
+                                        </div>
+
+                                        <!--=======  End of single image  =======-->
+
+                                    </div>
+
+                                </div>
+
+                                <!--=======  End of shop product small image gallery  =======-->
+                            </div>
+
+                            <div class="col-lg-6">
+                                <!--=======  shop product description  =======-->
+
+                                <div class="shop-product__description">
+
+                                    <!--=======  shop product rating  =======-->
+
+                                    <div class="shop-product__rating mb-15">
+                                        <span class="product-rating">
+                                            <i class="active ion-android-star"></i>
+                                            <i class="active ion-android-star"></i>
+                                            <i class="active ion-android-star"></i>
+                                            <i class="active ion-android-star"></i>
+                                            <i class="ion-android-star-outline"></i>
+                                        </span>
+
+                                        <span class="review-link ml-20">
+                                            <a href="#">(3 customer reviews)</a>
+                                        </span>
+                                    </div>
+
+                                    <!--=======  End of shop product rating  =======-->
+                                    <!--=======  shop product title  =======-->
+
+                                    <div class="shop-product__title mb-15">
+                                        <h2>@Model.shoes.Name</h2>
+                                    </div>
+
+                                    <!--=======  End of shop product title  =======-->
+                                    <!--=======  shop product price  =======-->
+
+                                    <div class="shop-product__price mb-30">
+                                        @if (Model.shoes.IsOnSale == true)
+                                        {
+
+                                            <span class="main-price discounted">$@(Model.shoes.Price + (Model.shoes.Price * 10 / 100))</span>
+                                            <span class="discounted-price">$@Model.shoes.Price</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="main-price">$@Model.shoes.Price</span>
+                                        }
+                                    </div>
+
+                                    <!--=======  End of shop product price  =======-->
+                                    <!--=======  shop product short description  =======-->
+
+                                    <div class="shop-product__short-desc mb-50">
+                                        @Model.shoes.Description
+                                    </div>
+
+                                    <!--=======  End of shop product short description  =======-->
+                                    <!--=======  shop product size block  =======-->
+                                    <form id="@Model.shoes.ShoesId" asp-action="AddToCart" asp-controller="Cart" method="post">
+                                        <input type="hidden" asp-for="shoesId"  value="@Model.shoes.ShoesId"/>        
+                                        <div class="shop-product__block shop-product__block--size mb-20">
+                                            <div class="shop-product__block__title">Size: </div>
+                                            <div class="shop-product__block__value">
+                                                <input class="size-input" type="text" required value="39" asp-for="size">
+                                            </div>
+                                        </div>
+
+                                        <!--=======  End of shop product size block  =======-->
+                                        <!--=======  shop product quantity block  =======-->
+
+                                        <div class="shop-product__block shop-product__block--quantity mb-40">
+                                            <div class="shop-product__block__title">Quantity: </div>
+                                            <div class="shop-product__block__value">
+                                                <div class="pro-qty d-inline-block mx-0 pt-0">
+                                                    <input type="text" value="1" asp-for="quantity">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--=======  End of shop product quantity block  =======-->
+                                        <!--=======  shop product buttons  =======-->
+
+                                        <div class="shop-product__buttons mb-40">
+                                            <button type="submit" class="lezada-button lezada-button--medium" >add to cart</button>
+                                        </div>
+                                    </form>
+                                    <!--=======  End of shop product buttons  =======-->
+
+
+                                </div>
+
+                                <!--=======  End of shop product description  =======-->
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!--=======  End of shop product content  =======-->
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Shoes>
+@{
+    ViewData["Title"] = "Shoes";
+}
+<div class="shop-page-wrapper">
+
+    <!--=======  shop page header  =======-->
+
+    <div class="shop-page-header">
+        <div class="container wide">
+            <div class="row align-items-center">
+
+                <div class="col-12 col-lg-7 col-md-12 d-none d-md-block">
+                    <!--=======  fitler titles  =======-->
+                    <div class="filter-title filter-title--type-two">
+                        <ul class="product-filter-menu">
+                            <li class="active" data-filter="*">All</li>
+                            <li data-filter=".new">new products</li>
+                            <li data-filter=".sale">sale products</li>
+                        </ul>
+                    </div>
+                    <!--=======  End of fitler titles  =======-->
+                </div>
+
+               
+
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <!--=====  End of shop advance filter area  ======-->
+    <!--=============================================
+    =            shop page content         =
+    =============================================-->
+
+    <div class="shop-page-content mt-100 mb-100">
+        <div class="container wide">
+            <div class="row">
+                <div class="col-lg-12 order-1 order-lg-2 mb-md-80 mb-sm-80">
+
+                    <div class="row product-isotope shop-product-wrap five-column">
+                        @foreach (var shoes in Model)
+                        {
+                            <!--=======  single product  =======-->
+                            <div class="col-12 col-lg-is-5 col-md-6 col-sm-6 mb-45 @(shoes.IsOnNew?"new":"") @(shoes.IsOnSale?"sale":"") ">
+                                <div class="single-product">
+                                    <!--=======  single product image  =======-->
+
+                                    <div class="single-product__image">
+                                        <a class="image-wrap" asp-controller="Shoes" asp-action="Details" asp-route-id="@shoes.ShoesId">
+                                            <img src="@shoes.ImageThumbnailUrl" class="img-fluid" alt="">
+                                            <img src="@shoes.ImageUrl" class="img-fluid" alt="">
+                                        </a>
+
+                                        <div class="single-product__floating-badges">
+                                            @if (shoes.IsOnNew)
+                                            {
+                                                <span class="hot">hot</span>
+                                            }
+                                            @if (shoes.IsOnSale)
+                                            {
+                                                <span class="onsale">-10%</span>
+                                            }
+                                        </div>
+
+                                        <div class="single-product__floating-icons">
+                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder" data-tippy-placement="left"><i class="ion-android-favorite-outline"></i></a></span>
+
+                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder" data-tippy-placement="left"><i class="ion-ios-shuffle-strong"></i></a></span>
+
+                                            <span class="quickview"><a class="cd-trigger" href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder" data-tippy-placement="left"><i class="ion-ios-search-strong"></i></a></span>
+                                        </div>
+
+
+                                    </div>
+
+                                    <!--=======  End of single product image  =======-->
+                                    <!--=======  single product content  =======-->
+
+                                    <div class="single-product__content">
+                                        <div class="title">
+                                            <h3> <a href="shop-product-basic.html">@shoes.Name</a></h3>
+                                            <a href="#">Select options</a>
+                                        </div>
+                                        <div class="price">
+                                            @if (shoes.IsOnSale == true)
+                                            {
+
+                                                <span class="main-price discounted">$@(shoes.Price + (shoes.Price * 10 / 100))</span>
+                                                <span class="discounted-price">$@shoes.Price</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="main-price">$@shoes.Price</span>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <!--=======  End of single product content  =======-->
+                                </div>
+                               
+                            </div>
+                            <!--=======  End of single product  =======-->
+                        }
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 text-center mt-30">
+                            <a class="lezada-button lezada-button--medium lezada-button--icon--left" href="#"><i class="ion-android-add"></i> MORE</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--=====  End of shop page content  ======-->
+</div>

@@ -1,0 +1,104 @@
+﻿@model Cart
+<div class="shopping-cart-area mb-130">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mb-30">
+                <!--=======  cart table  =======-->
+
+                <div class="cart-table-container">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th class="product-name" colspan="2">Product</th>
+                                <th class="product-price">Price</th>
+                                <th class="product-quantity">Quantity</th>
+                                <th class="product-quantity">Size</th>
+                                <th class="product-subtotal">Total</th>
+                                <th class="product-remove">&nbsp;</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var line in Model.Lines)
+                            {
+                                <tr>
+                                    <td class="product-thumbnail">
+                                        <a href="shop-product-basic.html">
+                                            <img src="@line.Shoes.ImageThumbnailUrl" class="img-fluid" alt="">
+                                        </a>
+                                    </td>
+                                    <td class="product-name">
+                                        <a asp-controller="Shoes" asp-action="Details" asp-route-id="@line.Shoes.ShoesId">@line.Shoes.Name</a>
+                                    </td>
+
+                                    <td class="product-price"><span class="price">$@line.Shoes.Price</span></td>
+
+                                    <td class="product-quantity">
+
+                                        @line.Quantity
+
+                                    </td>
+                                    <td class="product-quantity">
+
+                                        @line.Size
+
+                                    </td>
+
+                                    <td class="total-price"><span class="price">$@(line.Shoes.Price * line.Quantity)</span></td>
+
+                                    <td class="product-remove">
+                                        <a asp-action="RemoveFromCart" asp-controller="Cart" asp-route-cartLineID="@line.CartLineID">
+                                            <i class="ion-android-close"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--=======  End of cart table  =======-->
+            </div>
+            <div class="col-lg-12 mb-80">
+                <!--=======  coupon area  =======-->
+
+                <div class="cart-coupon-area pb-30">
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-12 text-left text-lg-right">
+                            <!--=======  update cart button  =======-->
+
+                            <a class="lezada-button lezada-button--medium" asp-action="Index" asp-controller="Home">Continue Shopping</a>
+
+                            <!--=======  End of update cart button  =======-->
+                        </div>
+                    </div>
+                </div>
+
+                <!--=======  End of coupon area  =======-->
+            </div>
+            @if (Model.Lines.Count() > 0)
+            {
+                <div class="col-xl-4 offset-xl-8 col-lg-5 offset-lg-7">
+                    <div class="cart-calculation-area">
+                        <h2 class="mb-40">Cart totals</h2>
+
+                        <table class="cart-calculation-table mb-30">
+                            <tr>
+                                <th>TOTAL</th>
+                                <td class="total">@Model.ComputeTotalValue().ToString("c")</td>
+                            </tr>
+                        </table>
+
+                        <div class="cart-calculation-button text-center">
+                            <a asp-action="Charge" asp-controller="Checkout" class="lezada-button lezada-button--medium">proceed to checkout</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

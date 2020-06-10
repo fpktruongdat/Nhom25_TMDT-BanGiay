@@ -1,0 +1,8 @@
+C:\Users\kysui\source\repos\Shop Shoes\FormatApiResponse\bin\Debug\netcoreapp3.1\FormatApiResponse.deps.json
+C:\Users\kysui\source\repos\Shop Shoes\FormatApiResponse\bin\Debug\netcoreapp3.1\FormatApiResponse.dll
+C:\Users\kysui\source\repos\Shop Shoes\FormatApiResponse\obj\Debug\netcoreapp3.1\FormatApiResponse.AssemblyInfoInputs.cache
+C:\Users\kysui\source\repos\Shop Shoes\FormatApiResponse\obj\Debug\netcoreapp3.1\FormatApiResponse.AssemblyInfo.cs
+C:\Users\kysui\source\repos\Shop Shoes\FormatApiResponse\bin\Debug\netcoreapp3.1\FormatApiResponse.pdb
+C:\Users\kysui\source\repos\Shop Shoes\FormatApiResponse\obj\Debug\netcoreapp3.1\FormatApiResponse.dll
+C:\Users\kysui\source\repos\Shop Shoes\FormatApiResponse\obj\Debug\netcoreapp3.1\FormatApiResponse.pdb
+C:\Users\kysui\source\repos\Shop Shoes\FormatApiResponse\obj\Debug\netcoreapp3.1\FormatApiResponse.csprojAssemblyReference.cache

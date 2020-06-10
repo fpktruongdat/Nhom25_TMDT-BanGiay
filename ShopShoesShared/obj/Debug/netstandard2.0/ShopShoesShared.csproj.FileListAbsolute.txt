@@ -1,0 +1,8 @@
+C:\Users\kysui\source\repos\Shop Shoes\ShopShoesShared\bin\Debug\netstandard2.0\ShopShoesShared.deps.json
+C:\Users\kysui\source\repos\Shop Shoes\ShopShoesShared\bin\Debug\netstandard2.0\ShopShoesShared.dll
+C:\Users\kysui\source\repos\Shop Shoes\ShopShoesShared\obj\Debug\netstandard2.0\ShopShoesShared.AssemblyInfoInputs.cache
+C:\Users\kysui\source\repos\Shop Shoes\ShopShoesShared\obj\Debug\netstandard2.0\ShopShoesShared.AssemblyInfo.cs
+C:\Users\kysui\source\repos\Shop Shoes\ShopShoesShared\bin\Debug\netstandard2.0\ShopShoesShared.pdb
+C:\Users\kysui\source\repos\Shop Shoes\ShopShoesShared\obj\Debug\netstandard2.0\ShopShoesShared.dll
+C:\Users\kysui\source\repos\Shop Shoes\ShopShoesShared\obj\Debug\netstandard2.0\ShopShoesShared.pdb
+C:\Users\kysui\source\repos\Shop Shoes\ShopShoesShared\obj\Debug\netstandard2.0\ShopShoesShared.csprojAssemblyReference.cache
